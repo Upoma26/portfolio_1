@@ -102,7 +102,7 @@ section{
     padding:40px;
     border-radius:25px;
     width:100%;
-    max-width:800px;
+    max-width:900px;
     background:white;
     box-shadow:0 15px 35px rgba(0,0,0,0.08);
     transition:0.3s;
@@ -208,6 +208,59 @@ textarea{
     height:120px;
 }
 
+/* Achievements Grid */
+.achievements-tabs{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    margin-bottom:30px;
+    flex-wrap:wrap;
+}
+
+.achievements-tabs button{
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    font-weight:600;
+    background:#a855f7;
+    color:white;
+    transition:0.3s;
+}
+
+.achievements-tabs button.active,
+.achievements-tabs button:hover{
+    background:#ff4d8d;
+}
+
+.achievements-grid{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+}
+
+.achievement-item{
+    width:220px;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,0.1);
+    transition:0.3s;
+    background:white;
+}
+
+.achievement-item img{
+    width:100%;
+    height:150px;
+    object-fit:cover;
+}
+
+.achievement-item p{
+    padding:10px;
+    font-size:14px;
+    color:#555;
+}
+
 /* Footer */
 footer{
     text-align:center;
@@ -222,27 +275,30 @@ footer{
     .hero h1{
         font-size:30px;
     }
+    .achievements-grid{
+        flex-direction:column;
+        align-items:center;
+    }
+    .achievements-tabs{
+        flex-direction:column;
+    }
 }
 </style>
 </head>
-
 <body>
 
 <nav>
     <a href="#home">Home</a>
     <a href="#education">Education</a>
     <a href="#skills">Skills</a>
-    <a href="#achievements">Achievements</a>
     <a href="#projects">Projects</a>
+    <a href="#achievements">Achievements</a>
     <a href="#contact">Contact</a>
 </nav>
 
 <section id="home" class="hero">
     <img src="image/upoma.jpg" alt="upoma photo">
-    <h1>
-        Jannatul Ferdaus <br>
-        Khusbu Upoma
-    </h1>
+    <h1>Jannatul Ferdaus <br> Khusbu Upoma</h1>
     <h3>CSE STUDENT</h3>
     <p>
         I am a CSE student currently pursuing my degree, with a strong interest in Software Engineering.
@@ -275,34 +331,55 @@ footer{
     </div>
 </section>
 
-<section id="achievements">
-    <div class="card">
-        <h2>Achievements</h2>
-        <ul>
-            <li>🏆 Winner of CSE Coding Challenge 2025</li>
-            <li>🎖️ Completed Python Bootcamp with Distinction</li>
-            <li>💡 Developed a Mini AI Project in university hackathon</li>
-        </ul>
-    </div>
-</section>
-
 <section id="projects">
     <div class="card">
         <h2>Projects</h2>
         <ul>
             <li>
                 <strong>Project-1:</strong>
-                <a href="https://drive.google.com/drive/folders/1Sbw66OgGb1tHSLr-09cDCH7oFsTVTCJR" target="_blank" class="btn">
-                    View Project-1
-                </a>
+                <a href="https://drive.google.com/drive/folders/1Sbw66OgGb1tHSLr-09cDCH7oFsTVTCJR" target="_blank" class="btn">View Project-1</a>
             </li>
             <li>
                 <strong>Project-2:</strong>
-                <a href="https://docs.google.com/presentation/d/1ytONHtoyBNV8sQWTEofk84x4nYtWyJK1/edit?usp=drivesdk&ouid=100771154948338017536&rtpof=true&sd=true" target="_blank" class="btn">
-                    View Project-2
-                </a>
+                <a href="https://docs.google.com/presentation/d/1ytONHtoyBNV8sQWTEofk84x4nYtWyJK1/edit?usp=drivesdk&ouid=100771154948338017536&rtpof=true&sd=true" target="_blank" class="btn">View Project-2</a>
             </li>
         </ul>
+    </div>
+</section>
+
+<section id="achievements">
+    <div class="card">
+        <h2>Achievements</h2>
+
+        <!-- Tabs -->
+        <div class="achievements-tabs">
+            <button class="tab-btn active" data-tab="awards">Awards</button>
+            <button class="tab-btn" data-tab="certificates">Certificates</button>
+        </div>
+
+        <!-- Grid -->
+        <div class="achievements-grid" id="awards">
+            <div class="achievement-item">
+                <img src="image/award1.jpg" alt="Award 1">
+                <p>🏆 Winner of CSE Coding Challenge 2025</p>
+            </div>
+            <div class="achievement-item">
+                <img src="image/award2.jpg" alt="Award 2">
+                <p>🏆 Best Programming Student Award</p>
+            </div>
+        </div>
+
+        <div class="achievements-grid" id="certificates" style="display:none;">
+            <div class="achievement-item">
+                <img src="image/certificate1.jpg" alt="Certificate 1">
+                <p>🎖️ Python Bootcamp Certificate</p>
+            </div>
+            <div class="achievement-item">
+                <img src="image/certificate2.jpg" alt="Certificate 2">
+                <p>🎖️ Java Fullstack Certificate</p>
+            </div>
+        </div>
+
     </div>
 </section>
 
@@ -313,7 +390,7 @@ footer{
         <p>Email: khushbukhushbu977@gmail.com</p>
         <p>Phone: 01973851390</p>
 
-        <!-- Social Buttons with logos -->
+        <!-- Social Buttons -->
         <a href="https://github.com/Upoma26/First_Portfolio" target="_blank" class="social-btn github-btn">
             <i class="fab fa-github"></i> GitHub
         </a>
@@ -335,6 +412,27 @@ footer{
 <footer>
     © 2026 Jannatul Ferdaus Khusbu Upoma | All Rights Reserved
 </footer>
+
+<script>
+// Tab functionality
+const tabs = document.querySelectorAll(".tab-btn");
+const grids = {
+    awards: document.getElementById("awards"),
+    certificates: document.getElementById("certificates")
+};
+
+tabs.forEach(tab=>{
+    tab.addEventListener("click",()=>{
+        tabs.forEach(t=>t.classList.remove("active"));
+        tab.classList.add("active");
+
+        const tabName = tab.getAttribute("data-tab");
+        for(let key in grids){
+            grids[key].style.display = key === tabName ? "flex" : "none";
+        }
+    });
+});
+</script>
 
 </body>
 </html>
